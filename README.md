@@ -6,10 +6,34 @@
 - Download the latest release from the [Releases](https://github.com/twopointzero/TJAPlayer3/releases) page.
 - Learn more about installation and usage in the [Usage](#usage) section of this document.
 
+## Project Status
+
+2020-05-30
+
+With the current global pandemic affecting so many,
+and with each person needing to respond to it in their own unique way,
+the ability to consistently work on just about anything has gone out the window.
+Priorities, interests, available time, and even ability (especially to focus,)
+have all changed unpredictably for all of us.
+
+For twopointzero, family and work receive the vast majority of time and energy.
+What little time remains for hobbies must necessarily be focused on only one,
+and that hobby is unfortunately not TJAPlayer3 development.
+
+As such, TJAPlayer3 is, and will be, only receiving small, infrequent updates.
+Most often these are fixes for automatically-reported crashes.
+Issue reports, pull requests, etc. are of course still welcome
+and will be addressed using available time.
+
+The above notwithstanding, we all have a strong future ahead of us, TJAPlayer3 included.
+Things may go slowly for a while, but TJAPlayer3 still appears to be the only
+taiko simulator with a sustainable long-term approach, and I intend to deliver.
+
 <!-- omit in toc -->
 ## Table of Contents
 
 - [Quick Links](#quick-links)
+- [Project Status](#project-status)
 - [Overview](#overview)
 - [Statement Regarding Intellectual Property](#statement-regarding-intellectual-property)
 - [Ethos](#ethos)
@@ -105,9 +129,10 @@ If the information above still leaves you feeling uncomfortable, your computer o
 
 ### System Requirements
 
-- Windows 7 or greater is required. However...
-- Windows 10 is strongly recommended. Correct behaviour on Windows versions lower than 10 is possible but no longer a tested configuration.
+- Windows 10 is required.
+  - Windows 7 and 8 users are few but their automatic crash reports are relatively many and relatively unique. Windows 7 is completely retired by Microsoft. Windows 8 was always crap. Windows 10 was released in 2015. Upgrade.
 - .NET Framework 4.8 is required.
+  - No, Mono is not supported. Mono crash reports distract from more important work like, for example, entirely removing the .NET Framework requirement by porting to .NET Core. Please stop.
 - DirectX 9c is required.
 
 ### Installation
