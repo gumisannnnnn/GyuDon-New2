@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sentry;
-using Sentry.Protocol;
 
 namespace TJAPlayer3.ErrorReporting
 {
@@ -25,7 +24,7 @@ namespace TJAPlayer3.ErrorReporting
             {
                 try
                 {
-                    o.Dsn = new Dsn("https://d13a7e78ae024f678e110c64bbf7e7f2@sentry.io/3365560");
+                    o.Dsn = "https://d13a7e78ae024f678e110c64bbf7e7f2@sentry.io/3365560";
                 }
                 catch
                 {
