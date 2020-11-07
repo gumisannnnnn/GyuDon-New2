@@ -1,8 +1,9 @@
 ﻿<!-- omit in toc -->
 # GyuDon New
-twopointzero氏のTJAPlayer3を使用しオリジナル風に改造していくや～つ
-ぜひ遊んでみてね！
-下はtwopointzero氏のREADMEです。
+- twopointzero氏のTJAPlayer3を使用しオリジナル風に改造していくや～つ
+- ぜひ遊んでみてね！
+- (コードはクソになるんで参考はおすすめしません)
+- 下はtwopointzero氏のREADMEです。
  
 # TJAPlayer3
 
