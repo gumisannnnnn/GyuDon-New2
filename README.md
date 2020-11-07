@@ -3,6 +3,7 @@
 - twopointzero氏のTJAPlayer3を使用しオリジナル風に改造していくや～つ
 - ぜひ遊んでみてね！
 - (コードはクソになるんで参考はおすすめしません)
+- 動画での使用は全然おｋです
 - 下はtwopointzero氏のREADMEです。
  
 # TJAPlayer3
