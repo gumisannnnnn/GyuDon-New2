@@ -1912,7 +1912,9 @@ for (int i = 0; i < 3; i++) {
 			{
 				delay = " (" + Sound管理.GetSoundDelay() + "ms)";
 			}
-            base.Window.Text = $"{AppDisplayNameWithInformationalVersion} ({CSound管理.GetCurrentSoundDeviceType()}{delay})";
+
+			DateTime dt = DateTime.Now;
+			base.Window.Text = $"GyuDon New (" + dt.ToString("yyyy/MM/dd") + ")";
 		}
 
 		private void t終了処理()

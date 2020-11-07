@@ -1303,13 +1303,18 @@ namespace TJAPlayer3
 					    {
 					        DrawRatingForUnselectedSong(nパネル番号, xAnime);
 					    }
-					}
+                    }
                     #endregion
-				}
+                }
 
-                if( this.n現在のスクロールカウンタ == 0 )
+                if (this.n現在のスクロールカウンタ == 0)
                 {
-                    TJAPlayer3.Tx.SongSelect_Bar_Center?.t2D描画( TJAPlayer3.app.Device, TJAPlayer3.Skin.SongSelect_Bar_Center_X, TJAPlayer3.Skin.SongSelect_Overall_Y);
+                    //TJAPlayer3.Tx.SongSelect_Bar_Center?.t2D描画( TJAPlayer3.app.Device, TJAPlayer3.Skin.SongSelect_Bar_Center_X, TJAPlayer3.Skin.SongSelect_Overall_Y);
+                    for (int i = 0; i < 13; i++)    // パネルは全13枚。
+                    {
+						int nパネル番号 = (((this.n現在の選択行 + 1) + i) + 13) % 13;
+						Bar_Center(ptバーの座標[5].Y + 830, ptバーの座標[5].X - 270, this.stバー情報[nパネル番号].strジャンル);
+					}
 
                     switch (r現在選択中の曲.eノード種別)
                     {
@@ -1505,14 +1510,14 @@ namespace TJAPlayer3
 							tx選択している曲のサブタイトル.t2D描画( TJAPlayer3.app.Device, 707, nサブタイY );
                             if( this.ttk選択している曲の曲名 != null )
                             {
-						    	ResolveTitleTexture(this.ttk選択している曲の曲名).t2D描画( TJAPlayer3.app.Device, 750, TJAPlayer3.Skin.SongSelect_Overall_Y + 23);
+						    	ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画( TJAPlayer3.app.Device, ptバーの座標[5].Y + 1015, ptバーの座標[5].X - 234);
                             }
                         }
                         else
                         {
                             if( this.ttk選択している曲の曲名 != null )
                             {
-	    						ResolveTitleTexture(this.ttk選択している曲の曲名).t2D描画( TJAPlayer3.app.Device, 750, TJAPlayer3.Skin.SongSelect_Overall_Y + 23);
+	    						ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画( TJAPlayer3.app.Device, ptバーの座標[5].Y + 1015, ptバーの座標[5].X - 234);
                             }
                         }
 
@@ -1820,9 +1825,17 @@ namespace TJAPlayer3
 			TJAPlayer3.Tx.SongSelect_Bar_Genre[barGenreIndex]?.t2D描画( TJAPlayer3.app.Device, x, y );
 		}
 
+		private void Bar_Center(int x,int y, string strジャンル)
+        {
+			var barGenreIndex = CStrジャンルtoNum.ForBarGenreIndex(strジャンル);
+			TJAPlayer3.Tx.SongSelect_Bar_Genre[barGenreIndex].vc拡大縮小倍率.X = 0.913f;
+			TJAPlayer3.Tx.SongSelect_Bar_Genre[barGenreIndex].vc拡大縮小倍率.Y = 0.913f;
+			TJAPlayer3.Tx.SongSelect_Bar_Genre[barGenreIndex]?.t2D描画(TJAPlayer3.app.Device, x, y);
+		}
+
         private TitleTextureKey ttk曲名テクスチャを生成する( string str文字, Color forecolor, Color backcolor)
         {
-            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 410);
+            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 320);
         }
 
 	    private TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字 )
@@ -1847,9 +1860,9 @@ namespace TJAPlayer3
 	            titleTextureKey.str文字, titleTextureKey.forecolor, titleTextureKey.backcolor)))
 	        {
 	            CTexture tx文字テクスチャ = TJAPlayer3.tテクスチャの生成(bmp, false);
-	            if (tx文字テクスチャ.szテクスチャサイズ.Height > titleTextureKey.maxHeight)
+	            if (tx文字テクスチャ.szテクスチャサイズ.Width > titleTextureKey.maxHeight)
 	            {
-	                tx文字テクスチャ.vc拡大縮小倍率.Y = (float) (((double) titleTextureKey.maxHeight) / tx文字テクスチャ.szテクスチャサイズ.Height);
+	                tx文字テクスチャ.vc拡大縮小倍率.X = (float) (((double) titleTextureKey.maxHeight) / tx文字テクスチャ.szテクスチャサイズ.Width);
 	            }
 
 	            return tx文字テクスチャ;
