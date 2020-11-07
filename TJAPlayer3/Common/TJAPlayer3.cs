@@ -1914,7 +1914,8 @@ for (int i = 0; i < 3; i++) {
 			}
 
 			DateTime dt = DateTime.Now;
-			base.Window.Text = $"GyuDon New (" + dt.ToString("yyyy/MM/dd") + ")";
+			System.OperatingSystem os = System.Environment.OSVersion;
+			base.Window.Text = $"GyuDon New (" + dt.ToString("yyyy/MM/dd") + ") " +  os.ToString();
 		}
 
 		private void t終了処理()

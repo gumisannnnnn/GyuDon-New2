@@ -555,6 +555,9 @@ namespace TJAPlayer3
 
             this.ct三角矢印アニメ = new CCounter();
 
+			this.BarOpenCounter[0] = new CCounter();
+			this.BarOpenCounter[1] = new CCounter();
+
 			base.On活性化();
 
 			this.t選択曲が変更された(true);		// #27648 2012.3.31 yyagi 選曲画面に入った直後の 現在位置/全アイテム数 の表示を正しく行うため
@@ -1281,6 +1284,7 @@ namespace TJAPlayer3
                         //-----------------
                         #endregion
 
+
                         #region [ タイトル名テクスチャを描画。]
 
                         if (n現在のスクロールカウンタ != 0)
@@ -1447,46 +1451,87 @@ namespace TJAPlayer3
                     //if( CDTXMania.Tx.SongSelect_Level != null )
                     //    CDTXMania.Tx.SongSelect_Level.t2D描画( CDTXMania.app.Device, 518, 169 );
                     if ( TJAPlayer3.Tx.SongSelect_Branch_Text != null && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.b譜面分岐[ TJAPlayer3.stage選曲.n現在選択中の曲の難易度 ] )
-                        TJAPlayer3.Tx.SongSelect_Branch_Text.t2D描画( TJAPlayer3.app.Device, 483, TJAPlayer3.Skin.SongSelect_Overall_Y+21);
+                        TJAPlayer3.Tx.SongSelect_Branch_Text.t2D描画(TJAPlayer3.app.Device, 483, TJAPlayer3.Skin.SongSelect_Overall_Y + 21);
 
                 }
 
                 #region [ 項目リストにフォーカスがあって、かつスクロールが停止しているなら、パネルの上下に▲印を描画する。]
-	    		//-----------------
-		
-					int Cursor_L = 1200 - this.ct三角矢印アニメ.n現在の値 / 50;
-					int Cursor_R = 773 + this.ct三角矢印アニメ.n現在の値 / 50;
-					int y22 = 330;
+                //-----------------
 
-					// 描画。
+                if (!BarOpenCounter[0].b進行中 && !BarOpenCounter[0].b進行中)
+                {
+                    int Cursor_L = 1200 - this.ct三角矢印アニメ.n現在の値 / 50;
+                    int Cursor_R = 773 + this.ct三角矢印アニメ.n現在の値 / 50;
+					int y22 = 330;
 
 					if (TJAPlayer3.Tx.SongSelect_Cursor_Left != null)
 					{
 						TJAPlayer3.Tx.SongSelect_Cursor_Left.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
-						TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L , y22);
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L, y22);
 					}
 					if (TJAPlayer3.Tx.SongSelect_Cursor_Right != null)
 					{
 						TJAPlayer3.Tx.SongSelect_Cursor_Right.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
-						TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R , y22);
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R, y22);
 					}
-				
-			    //-----------------
-			    #endregion
+                }
 
+                if (BarOpenCounter[0].b進行中)
+                {
+					int Cursor_L = Easing.EaseOut(BarOpenCounter[0],1200,1807,Easing.CalcType.Exponential) - this.ct三角矢印アニメ.n現在の値 / 50;
+					int Cursor_R = Easing.EaseOut(BarOpenCounter[0], 773, 1290, Easing.CalcType.Exponential) + this.ct三角矢印アニメ.n現在の値 / 50;
+					int y22 = 330;
 
-                for( int i = 0; i < 13; i++ )	// パネルは全13枚。
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Left != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L, y22);
+					}
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Right != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R, y22);
+					}
+				}
+
+				if (BarOpenCounter[1].b進行中)
 				{
-					if( ( i == 0 && this.n現在のスクロールカウンタ > 0 ) ||		// 最上行は、上に移動中なら表示しない。
-						( i == 12 && this.n現在のスクロールカウンタ < 0 ) )		// 最下行は、下に移動中なら表示しない。
-						continue;
+					int Cursor_L = Easing.EaseOut(BarOpenCounter[1], 1807, 1200, Easing.CalcType.Exponential) - this.ct三角矢印アニメ.n現在の値 / 50;
+					int Cursor_R = Easing.EaseOut(BarOpenCounter[1], 1290, 773, Easing.CalcType.Exponential) + this.ct三角矢印アニメ.n現在の値 / 50;
+					int y22 = 330;
 
-					int nパネル番号 = ( ( ( this.n現在の選択行 - 5 ) + i ) + 13 ) % 13;
-					int n見た目の行番号 = i;
-					int n次のパネル番号 = ( this.n現在のスクロールカウンタ <= 0 ) ? ( ( i + 1 ) % 13 ) : ( ( ( i - 1 ) + 13 ) % 13 );
-					//int x = this.ptバーの基本座標[ n見た目の行番号 ].X + ( (int) ( ( this.ptバーの基本座標[ n次のパネル番号 ].X - this.ptバーの基本座標[ n見た目の行番号 ].X ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Left != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L, y22);
+					}
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Right != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R, y22);
+					}
+				}
+
+				// 描画。
+
+
+
+				//-----------------
+				#endregion
+
+
+				for (int i = 0; i < 13; i++)    // パネルは全13枚。
+                {
+                    if ((i == 0 && this.n現在のスクロールカウンタ > 0) ||       // 最上行は、上に移動中なら表示しない。
+                        (i == 12 && this.n現在のスクロールカウンタ < 0))        // 最下行は、下に移動中なら表示しない。
+                        continue;
+
+                    int nパネル番号 = (((this.n現在の選択行 - 5) + i) + 13) % 13;
+                    int n見た目の行番号 = i;
+                    int n次のパネル番号 = (this.n現在のスクロールカウンタ <= 0) ? ((i + 1) % 13) : (((i - 1) + 13) % 13);
+                    //int x = this.ptバーの基本座標[ n見た目の行番号 ].X + ( (int) ( ( this.ptバーの基本座標[ n次のパネル番号 ].X - this.ptバーの基本座標[ n見た目の行番号 ].X ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
                     int x = i選曲バーX座標;
-                    int xAnime = this.ptバーの座標[ n見た目の行番号 ].X + ( (int) ( ( this.ptバーの座標[ n次のパネル番号 ].X - this.ptバーの座標[ n見た目の行番号 ].X ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
+                    int xAnime = this.ptバーの座標[n見た目の行番号].X + ( (int) ( ( this.ptバーの座標[ n次のパネル番号 ].X - this.ptバーの座標[ n見た目の行番号 ].X ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
 					int y = this.ptバーの基本座標[ n見た目の行番号 ].Y + ( (int) ( ( this.ptバーの基本座標[ n次のパネル番号 ].Y - this.ptバーの基本座標[ n見た目の行番号 ].Y ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
 
                     if( ( i == 5 ) && ( this.n現在のスクロールカウンタ == 0 ) )
@@ -1560,7 +1605,13 @@ namespace TJAPlayer3
                 TJAPlayer3.Tx.SongSelect_GenreText?.t2D描画( TJAPlayer3.app.Device, 496, TJAPlayer3.Skin.SongSelect_Overall_Y-64, new Rectangle( 0, 60 * CStrジャンルtoNum.ForGenreTextIndex( this.r現在選択中の曲.strジャンル ), 288, 60 ) );
             }
 
+			BarOpenCounter[0].t進行();
+			BarOpenCounter[1].t進行();
 
+            if (BarOpenSwitch)
+            {
+				BarOpen();
+            }
 
 
 			return 0;
@@ -1628,11 +1679,84 @@ namespace TJAPlayer3
 	        this.stバー情報[nパネル番号].Rating = newRating;
 	    }
 
-	    // その他
+		// その他
 
-		#region [ private ]
-		//-----------------
-		private enum Eバー種別 { Score, Box, Other }
+		public CCounter[] BarOpenCounter = new CCounter[2];
+		public bool BarOpenSwitch = false;
+	    
+
+        #region [ BarOpen ]
+        public void BarOpen()
+        {
+			TJAPlayer3.act文字コンソール.tPrint(0, 20, C文字コンソール.Eフォント種別.白, BarOpenCounter[0].n現在の値.ToString());
+			bool Counter = true;
+
+            if (Counter)
+            {
+				if (!BarOpenCounter[0].b進行中)
+					BarOpenCounter[0].t開始(0, 750, 1, TJAPlayer3.Timer);
+			}
+		
+
+            if (BarOpenCounter[0].b進行中)
+            {
+				int Ya1 = Easing.EaseOut(BarOpenCounter[0], 170, 460, Easing.CalcType.Exponential);
+				ptバーの座標[1].Y = Ya1;
+				ptバーの座標[9].Y = Ya1;
+				int Ya2 = Easing.EaseOut(BarOpenCounter[0], 90, 460, Easing.CalcType.Exponential);
+				ptバーの座標[2].Y = Ya2;
+				ptバーの座標[8].Y = Ya2;
+				int Ya3 = Easing.EaseOut(BarOpenCounter[0], 40, 460, Easing.CalcType.Exponential);
+				ptバーの座標[3].Y = Ya3;
+				ptバーの座標[7].Y = Ya3;
+				int Ya4 = Easing.EaseOut(BarOpenCounter[0], 10, 460, Easing.CalcType.Exponential);
+				ptバーの座標[4].Y = Ya4;
+				ptバーの座標[6].Y = Ya4;
+				int Ya5 = Easing.EaseOut(BarOpenCounter[0], 0, 460, Easing.CalcType.Exponential);
+				ptバーの座標[5].Y = Ya5;
+
+			}
+
+			if (BarOpenCounter[0].n現在の値 == 750)
+            {
+                if (!BarOpenCounter[1].b進行中)
+                {
+					BarOpenCounter[1].t開始(0, 750, 1, TJAPlayer3.Timer);
+				}
+            }
+
+			if (BarOpenCounter[1].b進行中)
+            {
+				int Ya1 = Easing.EaseOut(BarOpenCounter[1], 460, 170, Easing.CalcType.Exponential);
+				ptバーの座標[1].Y = Ya1;
+				ptバーの座標[9].Y = Ya1;
+				int Ya2 = Easing.EaseOut(BarOpenCounter[1], 460, 90, Easing.CalcType.Exponential);
+				ptバーの座標[2].Y = Ya2;
+				ptバーの座標[8].Y = Ya2;
+				int Ya3 = Easing.EaseOut(BarOpenCounter[1], 460, 40, Easing.CalcType.Exponential);
+				ptバーの座標[3].Y = Ya3;
+				ptバーの座標[7].Y = Ya3;
+				int Ya4 = Easing.EaseOut(BarOpenCounter[1], 460, 10, Easing.CalcType.Exponential);
+				ptバーの座標[4].Y = Ya4;
+				ptバーの座標[6].Y = Ya4;
+				int Ya5 = Easing.EaseOut(BarOpenCounter[1], 460, 0, Easing.CalcType.Exponential);
+				ptバーの座標[5].Y = Ya5;
+			}
+
+			if(BarOpenCounter[1].n現在の値 == 750)
+            {
+				BarOpenCounter[0].t停止();
+				BarOpenCounter[0].n現在の値 = 0;
+				BarOpenCounter[1].t停止();
+				BarOpenCounter[1].n現在の値 = 0;
+				BarOpenSwitch = false;
+			}
+		}
+        #endregion
+
+        #region [ private ]
+        //-----------------
+        private enum Eバー種別 { Score, Box, Other }
 
 		private struct STバー情報
 		{

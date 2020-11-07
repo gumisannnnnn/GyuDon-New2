@@ -183,11 +183,11 @@ namespace TJAPlayer3
                 TJAPlayer3.Tx.Title_Background?.t2D描画( TJAPlayer3.app.Device, 0, 0 );
 
                 #region[ バージョン表示 ]
-                const string repositoryUrl = "https://github.com/twopointzero/TJAPlayer3";
+                const string repositoryUrl = "https://github.com/gonii258/GyuDon-New2";
 #if DEBUG
                 TJAPlayer3.act文字コンソール.tPrint(4, 44, C文字コンソール.Eフォント種別.白, "DEBUG BUILD");
 #endif
-                TJAPlayer3.act文字コンソール.tPrint(4, 4, C文字コンソール.Eフォント種別.白, $"{TJAPlayer3.AppDisplayNameWithInformationalVersion} ({repositoryUrl})");
+                TJAPlayer3.act文字コンソール.tPrint(4, 4, C文字コンソール.Eフォント種別.白, $"GyuDon New ({repositoryUrl})");
                 TJAPlayer3.act文字コンソール.tPrint(4, 24, C文字コンソール.Eフォント種別.白, "Skin:" + TJAPlayer3.Skin.Skin_Name + " Ver." + TJAPlayer3.Skin.Skin_Version + " (" + TJAPlayer3.Skin.Skin_Creator + ")");
                 //CDTXMania.act文字コンソール.tPrint(4, 24, C文字コンソール.Eフォント種別.白, strSubTitle);
                 TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, $"{TJAPlayer3.AppDisplayName} is open source software under the MIT license. See README for acknowledgments.");
