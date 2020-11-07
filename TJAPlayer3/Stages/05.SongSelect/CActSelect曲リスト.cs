@@ -1453,25 +1453,24 @@ namespace TJAPlayer3
 
                 #region [ 項目リストにフォーカスがあって、かつスクロールが停止しているなら、パネルの上下に▲印を描画する。]
 	    		//-----------------
-		    	if( ( this.n目標のスクロールカウンタ == 0 ) )
-			    {
-                    int Cursor_L = 372 - this.ct三角矢印アニメ.n現在の値 / 50;
-                    int Cursor_R = 819 + this.ct三角矢印アニメ.n現在の値 / 50;
-                    int y = 289;
+		
+					int Cursor_L = 1200 - this.ct三角矢印アニメ.n現在の値 / 50;
+					int Cursor_R = 773 + this.ct三角矢印アニメ.n現在の値 / 50;
+					int y22 = 330;
 
-                        // 描画。
+					// 描画。
 
-                    if (TJAPlayer3.Tx.SongSelect_Cursor_Left != null)
-                    {
-                        TJAPlayer3.Tx.SongSelect_Cursor_Left.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値) ;
-                        TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L, y);
-                    }
-                    if (TJAPlayer3.Tx.SongSelect_Cursor_Right != null)
-                    {
-                        TJAPlayer3.Tx.SongSelect_Cursor_Right.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値) ;
-                        TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R, y);
-                    }
-                }
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Left != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Left.t2D描画(TJAPlayer3.app.Device, Cursor_L , y22);
+					}
+					if (TJAPlayer3.Tx.SongSelect_Cursor_Right != null)
+					{
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.Opacity = 255 - (ct三角矢印アニメ.n現在の値 * 255 / ct三角矢印アニメ.n終了値);
+						TJAPlayer3.Tx.SongSelect_Cursor_Right.t2D描画(TJAPlayer3.app.Device, Cursor_R , y22);
+					}
+				
 			    //-----------------
 			    #endregion
 
