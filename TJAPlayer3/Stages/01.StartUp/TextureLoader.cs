@@ -118,8 +118,9 @@ namespace TJAPlayer3
             Enum_Song = TxC("Enum_Song.png");
             Scanning_Loudness = TxC("Scanning_Loudness.png");
             Overlay = TxC("Overlay.png");
-
+            Circle = TxC("Circle.png");
             NamePlate = TxC(2, "{0}P_NamePlate.png", 1);
+
             #endregion
             #region 1_タイトル画面
             Title_Background = TxC($"{TITLE}Background.png");
@@ -412,6 +413,7 @@ namespace TJAPlayer3
             Menu_Highlight,
             Enum_Song,
             Scanning_Loudness,
+            Circle,
             Overlay;
         public CTexture[] NamePlate;
         #endregion

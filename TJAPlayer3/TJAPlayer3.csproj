@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -332,14 +333,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FDK19\FDK19.csproj">
-      <Project>{BCD40908-F3E2-4707-BFAA-1DD99DF6357D}</Project>
-      <Name>FDK19</Name>
-      <Private>True</Private>
-    </ProjectReference>
+    <Content Include="TJAPlayer3.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TJAPlayer3.ico" />
+    <ProjectReference Include="..\FDK19\FDK19.csproj">
+      <Project>{bcd40908-f3e2-4707-bfaa-1dd99df6357d}</Project>
+      <Name>FDK19</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -368,5 +368,8 @@ move /y "$(TargetDir)System.*" "$(SolutionDir)Test\dll\"
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.4\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.4\build\LargeAddressAware.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.8.0.1560\build\Xamarin.Forms.targets')" />
 </Project>

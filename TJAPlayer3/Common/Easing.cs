@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TJAPlayer3;
 using FDK;
 
 namespace TJAPlayer3
@@ -92,6 +91,25 @@ namespace TJAPlayer3
             }
 
             return (int)Value;
+        }
+
+        public static int EaseInOut(CCounter counter, int Start, int End)
+        {
+            double co = counter.n現在の値;
+            int sa = End - Start;
+            int TimeMs = counter.n終了値;
+
+            var persent = co / (double)TimeMs * 2.0;
+
+            if (persent < 1)
+            {
+                return (int)((double)sa / 2.0 * persent * persent * persent) + Start;
+            }
+            else
+            {
+                persent -= 2;
+                return (int)((double)sa / 2.0 * ((persent * persent * persent) + 2)) + Start;
+            }
         }
 
         public enum CalcType

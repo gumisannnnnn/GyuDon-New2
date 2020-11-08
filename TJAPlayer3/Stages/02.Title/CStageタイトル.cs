@@ -43,6 +43,8 @@ namespace TJAPlayer3
 				Trace.TraceInformation( "タイトルステージの活性化を完了しました。" );
 				Trace.Unindent();
 			}
+
+			Counter = new CCounter();
 		}
 		public override void On非活性化()
 		{
@@ -182,6 +184,15 @@ namespace TJAPlayer3
 
                 TJAPlayer3.Tx.Title_Background?.t2D描画( TJAPlayer3.app.Device, 0, 0 );
 
+				Counter.t進行();
+                if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.Space))
+                {
+					Counter.t開始(0, 1000, 1, TJAPlayer3.Timer);
+                }
+
+				int a = Easing.EaseInOut(Counter, 0, 1280);
+				TJAPlayer3.Tx.Circle?.t2D描画(TJAPlayer3.app.Device, a, 0);
+
                 #region[ バージョン表示 ]
                 const string repositoryUrl = "https://github.com/gonii258/GyuDon-New2";
 #if DEBUG
@@ -214,19 +225,19 @@ namespace TJAPlayer3
                         TJAPlayer3.Tx.Title_Menu.Opacity = (int) ( 255.0 * ( 1.0 - ( ( (double) this.ctカーソルフラッシュ用.n現在の値 ) / 100.0 ) ) );
 						int x_magnified = x + ( (int) ( ( MENU_W * ( 1.0 - nMag ) ) / 2.0 ) );
 						int y_magnified = y + ( (int) ( ( MENU_H * ( 1.0 - nMag ) ) / 2.0 ) );
-                        TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, x_magnified, y_magnified, new Rectangle( 0, MENU_H * 5, MENU_W, MENU_H ) );
+                        TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, x_magnified, y_magnified, new System.Drawing.Rectangle( 0, MENU_H * 5, MENU_W, MENU_H ) );
 					}
                     TJAPlayer3.Tx.Title_Menu.vc拡大縮小倍率.X = 1f;
                     TJAPlayer3.Tx.Title_Menu.vc拡大縮小倍率.Y = 1f;
                     TJAPlayer3.Tx.Title_Menu.Opacity = 0xff;
-                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, x, y, new Rectangle( 0, MENU_H * 4, MENU_W, MENU_H ) );
+                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, x, y, new System.Drawing.Rectangle( 0, MENU_H * 4, MENU_W, MENU_H ) );
 				}
 				if( TJAPlayer3.Tx.Title_Menu != null )
 				{
                     //this.txメニュー.t2D描画( CDTXMania.app.Device, 0xce, 0xcb, new Rectangle( 0, 0, MENU_W, MWNU_H ) );
                     // #24525 2011.3.16 yyagi: "OPTION"を省いて描画。従来スキンとの互換性確保のため。
-                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, MENU_X, MENU_Y, new Rectangle( 0, 0, MENU_W, MENU_H ) );
-                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, MENU_X, MENU_Y + MENU_H, new Rectangle( 0, MENU_H * 2, MENU_W, MENU_H * 2 ) );
+                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, MENU_X, MENU_Y, new System.Drawing.Rectangle( 0, 0, MENU_W, MENU_H ) );
+                    TJAPlayer3.Tx.Title_Menu.t2D描画( TJAPlayer3.app.Device, MENU_X, MENU_Y + MENU_H, new System.Drawing.Rectangle( 0, MENU_H * 2, MENU_W, MENU_H * 2 ) );
 				}
 
                 // URLの座標が押されたらブラウザで開いてやる 兼 マウスクリックのテスト
@@ -299,6 +310,9 @@ namespace TJAPlayer3
 
 
 		// その他
+
+		private CCounter Counter;
+		
 
 		#region [ private ]
 		//-----------------

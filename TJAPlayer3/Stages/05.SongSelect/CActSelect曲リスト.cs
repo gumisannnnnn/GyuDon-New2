@@ -10,6 +10,7 @@ using SlimDX;
 using FDK;
 using TJAPlayer3.Common;
 
+
 namespace TJAPlayer3
 {
 	internal class CActSelect曲リスト : CActivity
@@ -1193,7 +1194,7 @@ namespace TJAPlayer3
                             if( this.stバー情報[ nパネル番号 ].strタイトル文字列 != "" && this.stバー情報[ nパネル番号 ].strタイトル文字列 != null && this.ttk選択している曲の曲名 == null )
                                 this.ttk選択している曲の曲名 = this.ttk曲名テクスチャを生成する( this.stバー情報[ nパネル番号 ].strタイトル文字列, TJAPlayer3.Skin.SongSelect_NowSelect_ForeColor, TJAPlayer3.Skin.SongSelect_NowSelect_BackColor);
                             if( this.stバー情報[ nパネル番号 ].strサブタイトル != "" && this.stバー情報[ nパネル番号 ].strサブタイトル != null && this.ttk選択している曲のサブタイトル == null )
-                                this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する( this.stバー情報[ nパネル番号 ].strサブタイトル );
+                                this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する( this.stバー情報[ nパネル番号 ].strサブタイトル , nパネル番号);
 
 
                             if( this.ttk選択している曲のサブタイトル != null )
@@ -1541,9 +1542,9 @@ namespace TJAPlayer3
                         #region [ タイトル名テクスチャを描画。]
                         //-----------------
                         if (this.stバー情報[nパネル番号].strタイトル文字列 != "" &&  this.ttk選択している曲の曲名 == null)
-                            this.ttk選択している曲の曲名 = this.ttk曲名テクスチャを生成する(this.stバー情報[nパネル番号].strタイトル文字列, TJAPlayer3.Skin.SongSelect_NowSelect_ForeColor, TJAPlayer3.Skin.SongSelect_NowSelect_BackColor);
+                            this.ttk選択している曲の曲名 = this.ttk曲名テクスチャを生成する(this.stバー情報[nパネル番号].strタイトル文字列, this.stバー情報[nパネル番号].ForeColor, this.stバー情報[nパネル番号].BackColor);
                         if ( this.stバー情報[ nパネル番号 ].strサブタイトル != "" && this.ttk選択している曲のサブタイトル == null )
-                            this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する( this.stバー情報[ nパネル番号 ].strサブタイトル );
+                            this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する( this.stバー情報[ nパネル番号 ].strサブタイトル ,nパネル番号);
 
                         //サブタイトルがあったら700
 
@@ -1605,6 +1606,7 @@ namespace TJAPlayer3
                 TJAPlayer3.Tx.SongSelect_GenreText?.t2D描画( TJAPlayer3.app.Device, 496, TJAPlayer3.Skin.SongSelect_Overall_Y-64, new Rectangle( 0, 60 * CStrジャンルtoNum.ForGenreTextIndex( this.r現在選択中の曲.strジャンル ), 288, 60 ) );
             }
 
+			
 			BarOpenCounter[0].t進行();
 			BarOpenCounter[1].t進行();
 
@@ -1617,7 +1619,9 @@ namespace TJAPlayer3
 			return 0;
 		}
 
-	    private static void CopyRating(C曲リストノード song, ref STバー情報 stバー情報)
+		
+
+		private static void CopyRating(C曲リストノード song, ref STバー情報 stバー情報)
 	    {
 	        if (song.eノード種別 == C曲リストノード.Eノード種別.SCORE)
 	        {
@@ -1712,7 +1716,7 @@ namespace TJAPlayer3
 				int Ya4 = Easing.EaseOut(BarOpenCounter[0], 10, 460, Easing.CalcType.Exponential);
 				ptバーの座標[4].Y = Ya4;
 				ptバーの座標[6].Y = Ya4;
-				int Ya5 = Easing.EaseOut(BarOpenCounter[0], 0, 460, Easing.CalcType.Exponential);
+				int Ya5 = Easing.EaseOut(BarOpenCounter[0], 0, 460,  Easing.CalcType.Exponential);
 				ptバーの座標[5].Y = Ya5;
 
 			}
@@ -1961,9 +1965,9 @@ namespace TJAPlayer3
             return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 320);
         }
 
-	    private TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字 )
+	    private TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字 , int a)
         {
-            return new TitleTextureKey(str文字, pfSubtitle, TJAPlayer3.Skin.SongSelect_NowSelect_ForeColor, TJAPlayer3.Skin.SongSelect_NowSelect_BackColor, 390);
+            return new TitleTextureKey(str文字, pfSubtitle,  this.stバー情報[a].ForeColor, this.stバー情報[a].BackColor, 390);
         }
 
 	    private CTexture ResolveTitleTexture(TitleTextureKey titleTextureKey)
