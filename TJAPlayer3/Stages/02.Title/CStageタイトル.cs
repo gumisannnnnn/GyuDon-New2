@@ -163,6 +163,7 @@ namespace TJAPlayer3
 					{
 						if ( ( this.n現在のカーソル行 == (int) E戻り値.GAMESTART - 1 ) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功 )
 						{
+							
 							TJAPlayer3.Skin.soundゲーム開始音.t再生する();
 						}
 						else
