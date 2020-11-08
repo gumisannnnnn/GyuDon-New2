@@ -157,6 +157,7 @@ namespace TJAPlayer3
             SongSelect_Cursor_Left = TxC($"{SONGSELECT}Cursor_Left.png");
             SongSelect_Cursor_Right = TxC($"{SONGSELECT}Cursor_Right.png");
             SongSelect_Bar_Genre = TxC(9, $"{SONGSELECT}Bar_Genre_{{0}}.png");
+            SongSelect_Box_Genre = TxC(9, $"{SONGSELECT}Box_Genre_{{0}}.png");
             SongSelect_Frame_Box = TxC(9, $"{SONGSELECT}Frame_Box_{{0}}.png");
             SongSelect_ScoreWindow = TxC((int) Difficulty.Total, $"{SONGSELECT}ScoreWindow_{{0}}.png");
             SongSelect_GenreBack = TxC(9, $"{SONGSELECT}GenreBackground_{{0}}.png");
@@ -456,6 +457,7 @@ namespace TJAPlayer3
         public CTexture[] SongSelect_GenreBack;
         public CTexture[] SongSelect_ScoreWindow;
         public CTexture[] SongSelect_Bar_Genre;
+        public CTexture[] SongSelect_Box_Genre;
         public CTexture[] SongSelect_Frame_Box;
 
         #endregion
