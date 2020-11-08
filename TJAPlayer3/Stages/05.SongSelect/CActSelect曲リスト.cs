@@ -1290,7 +1290,7 @@ namespace TJAPlayer3
                         #region [ バーテクスチャを描画。]
                         //-----------------
                         if (n現在のスクロールカウンタ != 0)
-                            this.tジャンル別選択されていない曲バーの描画( 830 + yAnime, -270 + xAnime, this.stバー情報[ nパネル番号 ].strジャンル ,this.stバー情報[nパネル番号2].eバー種別, this.stバー情報[nパネル番号2].eノード種別);
+                            this.tジャンル別選択されていない曲バーの描画( 830 + yAnime, -270 + xAnime, this.stバー情報[nパネル番号].strジャンル, this.stバー情報[nパネル番号2].eバー種別, this.stバー情報[nパネル番号2].eノード種別);
                         else if (n見た目の行番号 != 5)
                             this.tジャンル別選択されていない曲バーの描画( 830 + yAnime, -270 + xAnime, this.stバー情報[nパネル番号].strジャンル, this.stバー情報[nパネル番号2].eバー種別, this.stバー情報[nパネル番号2].eノード種別);
                         if (this.stバー情報[nパネル番号].b分岐[TJAPlayer3.stage選曲.n現在選択中の曲の難易度] == true && n見た目の行番号 != 5)
