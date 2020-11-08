@@ -2041,7 +2041,7 @@ namespace TJAPlayer3
                     break;
                 }
                 var processingChip = chips[pastNote];
-                if (!processingChip.IsHitted && processingChip.nコース == n現在のコース[player]) // まだ判定されてない音符
+                if (!processingChip.IsHitted && processingChip.b可視) // まだ判定されてない音符
                 {
                     if (don ? GetDon(processingChip) : GetKatsu(processingChip)) // 音符のチャンネルである
                     {
@@ -2062,7 +2062,7 @@ namespace TJAPlayer3
                         }
                     }
                 }
-                if (processingChip.IsHitted && processingChip.nコース == n現在のコース[player]) // 連打
+                if (!processingChip.IsHitted && processingChip.b可視) // 連打
                 {
                     if ((0x15 <= processingChip.nチャンネル番号) && (processingChip.nチャンネル番号 <= 0x17))
                     {
@@ -2085,7 +2085,7 @@ namespace TJAPlayer3
                     break;
                 }
                 var processingChip = chips[futureNote];
-                if (!processingChip.IsHitted && processingChip.nコース == n現在のコース[player]) // まだ判定されてない音符
+                if (!processingChip.IsHitted && processingChip.b可視) // まだ判定されてない音符
                 {
                     if (don ? GetDon(processingChip) : GetKatsu(processingChip)) // 音符のチャンネルである
                     {
@@ -3671,8 +3671,8 @@ namespace TJAPlayer3
                 }
 
                 if( dTX.listChip[ A ].nチャンネル番号 == 0x01 ) continue;
-                //if( CDTXMania.DTX.listChip[ A ].nチャンネル番号 == 0x50 ) continue;
-                if( dTX.listChip[ A ].nチャンネル番号 == 0x9C ) continue;
+                if (dTX.listChip[A].nチャンネル番号 == 0x50) continue;
+                if ( dTX.listChip[ A ].nチャンネル番号 == 0x9C ) continue;
                 if( dTX.listChip[ A ].nチャンネル番号 == 0xDD ) continue;
                 if( dTX.listChip[ A ].nチャンネル番号 == 0xDE ) continue;
                 if( dTX.listChip[ A ].nチャンネル番号 == 0xDF ) continue;

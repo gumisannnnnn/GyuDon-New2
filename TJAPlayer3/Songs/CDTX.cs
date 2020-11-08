@@ -2022,8 +2022,8 @@ namespace TJAPlayer3
                             else if (chip.nチャンネル番号 == 0xF1) { }
                             else if (chip.nチャンネル番号 == 0xF2) { }
                             else if (chip.nチャンネル番号 == 0xFF) { }
-                            else if (chip.nチャンネル番号 == 0xDD) { chip.n発声時刻ms = ms + ((int)(((625 * (chip.n発声位置 - n発声位置)) * this.dbBarLength) / bpm)); }
-                            else if (chip.nチャンネル番号 == 0xDF) { chip.n発声時刻ms = ms + ((int)(((625 * (chip.n発声位置 - n発声位置)) * this.dbBarLength) / bpm)); }
+                            else if (chip.nチャンネル番号 == 0xDD) { }
+                            else if (chip.nチャンネル番号 == 0xDF) { }
                             else if (chip.nチャンネル番号 < 0x93)
                                 chip.n発声時刻ms = ms + ((int)(((625 * (chip.n発声位置 - n発声位置)) * this.dbBarLength) / bpm));
                             else if ((chip.nチャンネル番号 > 0x9F && chip.nチャンネル番号 < 0xA0) || (chip.nチャンネル番号 >= 0xF0 && chip.nチャンネル番号 < 0xFE))
@@ -3808,7 +3808,7 @@ namespace TJAPlayer3
 
                                 if (nObjectNum == 7 || nObjectNum == 9)
                                 {
-                                    switch (this.n現在のコース)
+                                    switch (chip.nコース)
                                     {
                                         case 0:
                                             if (this.listBalloon_Normal.Count == 0)
@@ -3882,9 +3882,9 @@ namespace TJAPlayer3
                                     chip.nノーツ移動開始時刻ms = listChip[nNowRollCount].nノーツ移動開始時刻ms;
 
                                     chip.n連打音符State = nNowRoll;
-                                    listChip[nNowRollCount].nノーツ終了位置 = (this.n現在の小節数 * 384) + ((384 * n) / n文字数);
-                                    listChip[nNowRollCount].nノーツ終了時刻ms = (int)this.dbNowTime;
-                                    listChip[nNowRollCount].fBMSCROLLTime_end = (int)this.dbNowBMScollTime;
+                                    listChip[nNowRollCount + i].nノーツ終了位置 = (this.n現在の小節数 * 384) + ((384 * n) / n文字数);
+                                    listChip[nNowRollCount + i].nノーツ終了時刻ms = (int)this.dbNowTime;
+                                    listChip[nNowRollCount + i].fBMSCROLLTime_end = (int)this.dbNowBMScollTime;
                                     //listChip[ nNowRollCount ].dbBPM = this.dbNowBPM;
                                     //listChip[ nNowRollCount ].dbSCROLL = this.dbNowSCROLL;
                                     nNowRoll = 0;
