@@ -543,7 +543,13 @@ namespace TJAPlayer3
 
 
 
-            TJAPlayer3.Tx.Taiko_Frame[0]?.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Taiko_Frame_X[0], TJAPlayer3.Skin.Game_Taiko_Frame_Y[0]);
+            var a = (TJAPlayer3.DTX.listChip.Count > 0) ? TJAPlayer3.DTX.listChip[TJAPlayer3.DTX.listChip.Count - 1].n発声時刻ms : 0;
+
+            var b = (double)(CSound管理.rc演奏用タイマ.n現在時刻ms * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+            var c = b / a;
+
+            TJAPlayer3.Tx.Taiko_Frame[0]?.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Taiko_Frame_X[0], TJAPlayer3.Skin.Game_Taiko_Frame_Y[0], new Rectangle(0, 0, 951, 216));
+            TJAPlayer3.Tx.Taiko_Frame[0]?.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Taiko_Frame_X[0] + 7, TJAPlayer3.Skin.Game_Taiko_Frame_Y[0] + TJAPlayer3.Tx.Taiko_Frame[0].szテクスチャサイズ.Height - 8, new Rectangle(7, 216, (int)(932 * c), 8));
 
             if (TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
             {
