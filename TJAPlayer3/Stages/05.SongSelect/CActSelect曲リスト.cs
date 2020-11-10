@@ -1589,14 +1589,11 @@ namespace TJAPlayer3
 
             if (TJAPlayer3.stage選曲.DifficultySwitch)
             {
-			
 				difficulty();
             }
 
 			return 0;
 		}
-
-		
 
 		private static void CopyRating(C曲リストノード song, ref STバー情報 stバー情報)
 	    {
