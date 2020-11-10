@@ -6,6 +6,7 @@
 - 動画での使用は全然おｋです
 - 二次配布については全然してもらっておｋですが必ず何かを改変し自作発言さえしなければOKです
 - 下はtwopointzero氏のREADMEです。
+- Discord鯖リンクです→https://discord.gg/fSzMtT3
  
 # TJAPlayer3
 
