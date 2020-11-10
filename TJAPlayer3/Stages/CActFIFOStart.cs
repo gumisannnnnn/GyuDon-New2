@@ -60,7 +60,7 @@ namespace TJAPlayer3
                 if(TJAPlayer3.Tx.SongLoading_FadeIn != null )
                 {
 					TJAPlayer3.Tx.SongLoading_FadeIn.Opacity = 255 - Easing.EaseInOut(counter, 0, 255);
-					TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画( TJAPlayer3.app.Device, 0, 0 );
+					TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画( TJAPlayer3.app.Device, 0, 0);
                 }
             }
 

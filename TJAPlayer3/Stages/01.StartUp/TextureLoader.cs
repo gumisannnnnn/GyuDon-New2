@@ -171,6 +171,7 @@ namespace TJAPlayer3
             SongLoading_Plate = TxC($"{SONGLOADING}Plate.png");
             SongLoading_FadeIn = TxC($"{SONGLOADING}FadeIn.png");
             SongLoading_FadeOut = TxC($"{SONGLOADING}FadeOut.png");
+
             #endregion
 
             #region 5_演奏画面
@@ -344,6 +345,9 @@ namespace TJAPlayer3
             End_Clear_Text = TxC($"{GAME}{END}Clear_Text.png");
             End_Clear_Text_Effect = TxC($"{GAME}{END}Clear_Text_Effect.png");
             if (End_Clear_Text_Effect != null) End_Clear_Text_Effect.b加算合成 = true;
+
+            Clear_Back = TxC(GAME + END + @"Clear_Back.png");
+            fail_Back = TxC(GAME + END + @"fail_Back.png");
             #endregion
             #region ゲームモード
             GameMode_Timer_Tick = TxC($"{GAME}{GAMEMODE}Timer_Tick.png");
@@ -590,7 +594,9 @@ namespace TJAPlayer3
         public CTexture[] End_Clear_R;
 
         public CTexture End_Clear_Text,
-            End_Clear_Text_Effect;
+            End_Clear_Text_Effect,
+            Clear_Back,
+            fail_Back;
         #endregion
         #region ゲームモード
         public CTexture GameMode_Timer_Frame,
