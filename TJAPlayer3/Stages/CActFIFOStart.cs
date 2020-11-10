@@ -10,12 +10,12 @@ namespace TJAPlayer3
 		{
 			this.mode = EFIFOモード.フェードアウト;
 
-            this.counter = new CCounter( 0, 1500, 1, TJAPlayer3.Timer );
+            this.counter = new CCounter( 0, 750, 1, TJAPlayer3.Timer );
 		}
 		public void tフェードイン開始()
 		{
 			this.mode = EFIFOモード.フェードイン;
-			this.counter = new CCounter( 0, 1500, 1, TJAPlayer3.Timer );
+			this.counter = new CCounter( 0, 750, 1, TJAPlayer3.Timer );
 		}
 
 		// CActivity 実装
@@ -51,30 +51,29 @@ namespace TJAPlayer3
             {
                 if( TJAPlayer3.Tx.SongLoading_FadeOut != null )
 			    {
-                    int y = this.counter.n現在の値 >= 840 ? 840 : this.counter.n現在の値;
-                    TJAPlayer3.Tx.SongLoading_FadeOut.t2D描画( TJAPlayer3.app.Device, 0, 720 - y );
+					TJAPlayer3.Tx.SongLoading_FadeOut.Opacity = Easing.EaseInOut(counter, 0, 255);
+					TJAPlayer3.Tx.SongLoading_FadeOut.t2D描画( TJAPlayer3.app.Device, 0, 0);
                 }
-
 			}
             else
             {
                 if(TJAPlayer3.Tx.SongLoading_FadeIn != null )
                 {
-                    int y = this.counter.n現在の値 >= 840 ? 840 : this.counter.n現在の値;
-                    TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画( TJAPlayer3.app.Device, 0, 0 - y );
+					TJAPlayer3.Tx.SongLoading_FadeIn.Opacity = 255 - Easing.EaseInOut(counter, 0, 255);
+					TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画( TJAPlayer3.app.Device, 0, 0 );
                 }
             }
 
             if( this.mode == EFIFOモード.フェードアウト )
             {
-			    if( this.counter.n現在の値 != 1500 )
+			    if( this.counter.n現在の値 != 750 )
 			    {
 				    return 0;
 			    }
             }
             else if( this.mode == EFIFOモード.フェードイン )
             {
-			    if( this.counter.n現在の値 != 1500 )
+			    if( this.counter.n現在の値 != 750 )
 			    {
 				    return 0;
 			    }
