@@ -145,6 +145,7 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
+				/*
 				if( base.b初めての進行描画 )
 				{
 					this.ct登場アニメ用 = new CCounter( 0, 3000, 1, TJAPlayer3.Timer );
@@ -163,6 +164,7 @@ namespace TJAPlayer3
                         TJAPlayer3.Tx.SongSelect_ScoreWindow_Text?.t2D描画(TJAPlayer3.app.Device, x + 236, y + 166, new Rectangle(0, 36, 32, 30));
                     }
                 }
+				*/
 			}
 			return 0;
 		}

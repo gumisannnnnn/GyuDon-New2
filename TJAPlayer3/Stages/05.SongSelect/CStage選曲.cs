@@ -396,30 +396,45 @@ namespace TJAPlayer3
 					#endregion
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu /*&&  !this.act難易度選択画面.bIsDifficltSelect */ )
 					{
-                        #region [ ESC ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && (this.act曲リスト.r現在選択中の曲 != null))// && (  ) ) )
-                            if (this.act曲リスト.r現在選択中の曲.r親ノード == null)
-                            {   // [ESC]
-                                TJAPlayer3.Skin.sound取消音.t再生する();
-                                this.eフェードアウト完了時の戻り値 = E戻り値.タイトルに戻る;
-                                this.actFIFO.tフェードアウト開始();
-                                base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-                                return 0;
-                            }
+						#region [ ESC ]
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && (this.act曲リスト.r現在選択中の曲 != null))
+						{
+                            if (DifficultySwitch == false)
+                            {
+								if (this.act曲リスト.r現在選択中の曲.r親ノード == null)
+								{   // [ESC]
+									TJAPlayer3.Skin.sound取消音.t再生する();
+									this.eフェードアウト完了時の戻り値 = E戻り値.タイトルに戻る;
+									this.actFIFO.tフェードアウト開始();
+									base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+									return 0;
+								}
+								else
+								{
+
+									if (this.act曲リスト.BarOpenSwitch == false)
+									{
+										TJAPlayer3.Skin.sound取消音.t再生する();
+										/*
+										bool bNeedChangeSkin = this.act曲リスト.tBOXを出る();
+										*/
+										this.actPresound.tサウンド停止();
+										this.act曲リスト.BarOpenSwitch = true;
+										Back = true;
+									}
+								}
+							}
                             else
                             {
-
-                                if (this.act曲リスト.BarOpenSwitch == false)
-                                {
-                                    TJAPlayer3.Skin.sound取消音.t再生する();
-                                    /*
-									bool bNeedChangeSkin = this.act曲リスト.tBOXを出る();
-									*/
-                                    this.actPresound.tサウンド停止();
-                                    this.act曲リスト.BarOpenSwitch = true;
-                                    Back = true;
-                                }
-                            }
+								this.act曲リスト.DifficultyEnd = true;
+								if (!this.act曲リスト.DifficultyCounter[3].b進行中)
+									this.act曲リスト.DifficultyCounter[3].t開始(0, 700, 1, TJAPlayer3.Timer);
+								if (!this.act曲リスト.DifficultyBarCounter[10].b進行中)
+									this.act曲リスト.DifficultyBarCounter[10].t開始(0, 500, 1, TJAPlayer3.Timer);
+							}
+						}
+						
+                          
                         #endregion
                         #region [ Shift-F1: CONFIG画面 ]
                         if ((TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDX.DirectInput.Key.RightShift) || TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDX.DirectInput.Key.LeftShift)) &&
@@ -514,7 +529,7 @@ namespace TJAPlayer3
                             if ((TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed)) ||
                                     ((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))))
                             {
-								if (this.act曲リスト.r現在選択中の曲 != null && this.act曲リスト.BarOpenSwitch == false)
+								if (this.act曲リスト.r現在選択中の曲 != null && this.act曲リスト.BarOpenSwitch == false && DifficultySwitch == false)
                                 {
                                     switch (this.act曲リスト.r現在選択中の曲.eノード種別)
                                     {
@@ -524,7 +539,11 @@ namespace TJAPlayer3
                                             else
                                                 TJAPlayer3.Skin.sound決定音.t再生する();
 
+											this.act曲リスト.DifficultyEnd = false; 
+											DifficultySwitch = true;
+											/*
                                             this.t曲を選択する();
+											*/
                                             break;
                                         case C曲リストノード.Eノード種別.BOX:
                                             {
@@ -574,7 +593,7 @@ namespace TJAPlayer3
                                 }
                             }
                             #endregion
-							if(this.act曲リスト.BarOpenSwitch == false)
+							if(this.act曲リスト.BarOpenSwitch == false && DifficultySwitch == false)
                             {
 								#region [ Up ]
 								this.ctキー反復用.Up.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDX.DirectInput.Key.LeftArrow), new CCounter.DGキー処理(this.tカーソルを上へ移動する));
@@ -624,32 +643,7 @@ namespace TJAPlayer3
 								}
 							}
 							#endregion
-							#region [ 上: 難易度変更(上) ]
-							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.UpArrow ) )
-							{
-								//CommandHistory.Add( E楽器パート.DRUMS, EパッドFlag.HH );
-								//EパッドFlag[] comChangeDifficulty = new EパッドFlag[] { EパッドFlag.HH, EパッドFlag.HH };
-								//if ( CommandHistory.CheckCommand( comChangeDifficulty, E楽器パート.DRUMS ) )
-								{
-									Debug.WriteLine( "ドラムス難易度変更" );
-                                    this.act曲リスト.t難易度レベルをひとつ進める();
-									TJAPlayer3.Skin.sound変更音.t再生する();
-								}
-							}
-							#endregion
-							#region [ 下: 難易度変更(下) ]
-							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.DownArrow ) )
-							{
-								//CommandHistory.Add( E楽器パート.DRUMS, EパッドFlag.HH );
-								//EパッドFlag[] comChangeDifficulty = new EパッドFlag[] { EパッドFlag.HH, EパッドFlag.HH };
-								//if ( CommandHistory.CheckCommand( comChangeDifficulty, E楽器パート.DRUMS ) )
-								{
-									Debug.WriteLine( "ドラムス難易度変更" );
-                                    this.act曲リスト.t難易度レベルをひとつ戻す();
-									TJAPlayer3.Skin.sound変更音.t再生する();
-								}
-							}
-							#endregion
+							
 						}
 					}
 
@@ -726,6 +720,7 @@ namespace TJAPlayer3
 
 		#region [ private ]
 		private bool Back = false;
+		public bool DifficultySwitch = false;
 
 		//-----------------
 		[StructLayout( LayoutKind.Sequential )]

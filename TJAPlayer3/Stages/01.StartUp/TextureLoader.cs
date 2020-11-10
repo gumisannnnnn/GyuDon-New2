@@ -163,6 +163,8 @@ namespace TJAPlayer3
             SongSelect_GenreBack = TxC(9, $"{SONGSELECT}GenreBackground_{{0}}.png");
             SongSelect_ScoreWindow_Text = TxC($"{SONGSELECT}ScoreWindow_Text.png");
             SongSelect_Rating = TxC($"{SONGSELECT}Rating.png");
+            Difficulty_Bar = TxC(5, $"{SONGSELECT}Difficulty/{{0}}.png");
+            Difficulty_Arrow = TxC($"{SONGSELECT}Right_Arrow.png");
             #endregion
 
             #region 4_読み込み画面
@@ -452,6 +454,7 @@ namespace TJAPlayer3
             SongSelect_Cursor_Left,
             SongSelect_Cursor_Right,
             SongSelect_ScoreWindow_Text,
+            Difficulty_Arrow,
             SongSelect_Rating;
 
         public CTexture[] SongSelect_GenreBack;
@@ -459,6 +462,7 @@ namespace TJAPlayer3
         public CTexture[] SongSelect_Bar_Genre;
         public CTexture[] SongSelect_Box_Genre;
         public CTexture[] SongSelect_Frame_Box;
+        public CTexture[] Difficulty_Bar;
 
         #endregion
 

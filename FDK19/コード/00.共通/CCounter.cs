@@ -137,6 +137,10 @@
             this.t開始( db開始値, db終了値, db間隔 * 1000.0, timer );
         }
 
+		public void Reset()
+        {
+			n現在の値 = 0;
+        }
 
 		// 状態操作メソッド
 
